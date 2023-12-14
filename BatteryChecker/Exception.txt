@@ -1,0 +1,21 @@
+If you get a similar exception like this:
+
+
+Exception in thread Thread-2 (_show_toast):
+Traceback (most recent call last):
+  File "C:\Users\"user"\AppData\Local\Programs\Python\Python310\lib\threading.py", line 1009, in _bootstrap_inner
+    self.run()
+  File "C:\Users\"user"\AppData\Local\Programs\Python\Python310\lib\threading.py", line 946, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\"user"\AppData\Local\Programs\Python\Python310\lib\site-packages\win10toast\__init__.py", line 83, in _show_toast
+    self.hwnd = CreateWindow(self.classAtom, "Taskbar", style,
+AttributeError: 'ToastNotifier' object has no attribute 'classAtom'
+Traceback (most recent call last):
+  File "C:\Users\"user"\OneDrive\Desktop\Codes\Python\Python_Scripts\BatteryChecker\BatteryChecker.py", line 59, in <module>
+
+
+Go to: C:\Users\"user"\AppData\Local\Programs\Python\Python310\lib\site-packages\win10toast\__init__.py
+
+and in line 76 change: " self.wc.lpszClassName = str("PythonTaskbar") " to: " self.wc.lpszClassName = str(f"PythonTaskbar{title}") "
+
+Solution from: https://stackoverflow.com/questions/50741455/toastnotifier-object-has-no-attribute-classatom
